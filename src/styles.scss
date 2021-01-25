@@ -1,0 +1,234 @@
+* {
+    font-size: 62.5%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.workflow-container {
+    h1 {
+        text-transform: uppercase;
+        margin: 2rem;
+        font-size: 8rem;
+    }
+
+    button {
+        padding: 1.25rem;
+        width: 150px;
+        margin: 1rem;
+        font-size: 2rem;
+    }
+
+    &__options {
+        margin: 0 auto;
+        display: flex;
+    }
+}
+
+
+.linkedInModal {
+    color: #ffffff;
+    height: 40vh;
+    font-size: 4rem;
+    margin: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.2s all;
+    border: none;
+    outline: none;
+    width: 70%;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    background: #282c34;
+
+    &--content {
+        // position: absolute;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+
+        & h1 {
+            font-size: 2rem;
+        }
+
+        & input,
+        button {
+            display: block;
+            margin-top: 1.5rem;
+            padding: 1rem;
+        }
+
+        &__left {
+            float: left;
+            width: 15%;
+            background-size: cover;
+            background-position: top right;
+            height: 100%;
+            background: linear-gradient(90deg,  rgba(6,213,255, 1) 0%, rgba(6,213,255,0.6993172268907564) 100%);
+        }
+
+        &__right {
+            overflow: hidden;
+            width: 85%;
+            float: right;
+            text-align: center;
+            padding: 2.5rem;
+            height: 100%;
+
+            &__inputs {
+                margin-top: 2rem;
+                width: 100%;
+                // transform: translateY(50%);
+                margin-top: 10%;
+                & input {
+                    width: 100%;
+                    padding: 2.5rem;
+                    outline: none;
+                    border: none;
+                    font-size: 1.5rem;
+                }
+                & button {
+                    font-size: 1.5rem;
+                    padding: 1.5rem;
+                    width: 25%;
+                }
+                &--results {
+                    font-size: 2.5rem;
+                    width: 50%;
+                    float: right;
+                    padding: 2rem;
+                    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+            
+                    &--err {
+                        background-color: rgba(217, 30, 24, 0.6);
+                        text-transform: uppercase;
+                    }
+                    &--ok {
+                        background: linear-gradient(90deg,  rgba(6,213,255, 0.6) 0%, rgba(6,213,255,0.6993172268907564) 60%);
+                        &:hover {
+                            cursor: pointer;
+                            background: linear-gradient(90deg,  rgba(6,213,255, 0.7) 0%, rgba(6,213,255,0.8) 70%);
+                        }
+                        &:active {
+                            transform: scaleY(1.1);
+                            transition: 0.3s all;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.twitterModal {
+    color: #ffffff;
+    height: 40vh;
+    font-size: 4rem;
+    margin: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.2s all;
+    border: none;
+    outline: none;
+    width: 70%;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    background: #282c34;
+
+    &--content {
+        // position: absolute;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+
+        & h1 {
+            font-size: 2rem;
+        }
+
+        & input,
+        button, textarea {
+            display: block;
+            margin-top: 1.5rem;
+            padding: 1rem;
+        }
+
+        &__left {
+            float: left;
+            width: 15%;
+            background-size: cover;
+            background-position: top right;
+            height: 100%;
+            background: linear-gradient(90deg,  rgba(4, 147, 114, 0.8) 0%, rgba(4, 147, 114, 0.6) 100%);
+        }
+
+        &__right {
+            overflow: hidden;
+            width: 85%;
+            float: right;
+            text-align: center;
+            padding: 2.5rem;
+            height: 100%;
+
+            &__inputs {
+                margin-top: 2rem;
+                width: 100%;
+                // transform: translateY(50%);
+                margin-top: 10%;
+                & input, textarea {
+                    width: 100%;
+                    padding: 2.5rem;
+                    outline: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    resize: none;
+                }
+                & button {
+                    font-size: 1.5rem;
+                    padding: 1.5rem;
+                    width: 25%;
+                }
+                &--results {
+                    font-size: 2.5rem;
+                    width: 50%;
+                    float: right;
+                    padding: 2rem;
+                    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+            
+                    &--err {
+                        background-color: rgba(217, 30, 24, 0.6);
+                        text-transform: uppercase;
+                    }
+                    &--ok {
+                        background: linear-gradient(90deg,  rgba(6,213,255, 0.6) 0%, rgba(6,213,255,0.6993172268907564) 60%);
+                        &:hover {
+                            cursor: pointer;
+                            background: linear-gradient(90deg,  rgba(6,213,255, 0.7) 0%, rgba(6,213,255,0.8) 70%);
+                        }
+                        &:active {
+                            transform: scaleY(1.1);
+                            transition: 0.3s all;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    background: none;
+}
+
+.ReactModal__Overlay--after-open {
+    opacity: 1;
+    background: none;
+}
+
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+    background: none;
+}
