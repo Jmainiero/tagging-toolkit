@@ -1,68 +1,122 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 
 ReactModal.setAppElement('#root');
+class TwitterModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '',
+      modalIsOpen: false,
+      showResults: false,
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+  }
 
-const Results = (e) => {
-    // const snippet = document.querySelector('input');
-    const snippet = e.target;
-    console.log(snippet);
+  Results = (e) => {
+    const snippet = this.state.value;
     try {
-        if (snippet.value.length <= 0) {
-            return (<div className="twitterModal--content__right__inputs--results twitterModal--content__right__inputs--results--err">
-                <p>ERROR. Enter a value.</p>
-            </div>
-            );
-        }
-        const r = snippet.value.split(".").filter((e) => {
-            if (e.split("('")[0] === 'trackPid') return e.split("('")[1].split("',")[0];
-        })[0];
+      if (snippet.length <= 0) {
         return (
-            <div className="twitterModal--content__right__inputs--results twitterModal--content__right__inputs--results--ok" id= {r}>
-                <p onClick={() => {navigator.clipboard.writeText(document.querySelector('.twitterModal--content__right__inputs--results--ok').innerText);}}>Conversion Id: {r}</p>
-            </div>
+          <div className='twitterModal--content__right__inputs--results twitterModal--content__right__inputs--results--err'>
+            <p>ERROR. Enter a value.</p>
+          </div>
         );
-    } catch(err) {
-        throw err;
+      }
+      const r = snippet
+        .split('.')
+        .map((e) => {
+          //   console.log(e.split("('"));
+          if (e.split("('")[0] === 'trackPid') {
+            return e.split("('")[1].split("',")[0];
+          }
+          return;
+        })
+        .filter((e) => e !== undefined)[0];
+
+      if (r.length > 0) {
         return (
-            <div className="twitterModal--content__right__inputs--results twitterModal--content__right__inputs--results--err">
-                <p>ERROR. Cannot Find Conversion Id.</p>
-            </div>
+          <div
+            className='twitterModal--content__right__inputs--results twitterModal--content__right__inputs--results--ok'
+            id={r}
+          >
+            <p
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  document.querySelector(
+                    '.twitterModal--content__right__inputs--results--ok'
+                  ).innerText
+                );
+              }}
+            >
+              Website Tag Id: {r}
+            </p>
+          </div>
         );
+      } else {
+        return (
+          <div className='twitterModal--content__right__inputs--results twitterModal--content__right__inputs--results--err'>
+            <p>ERROR. Cannot Find Website Tag Id.</p>
+          </div>
+        );
+      }
+    } catch (err) {
+      return (
+        <div className='twitterModal--content__right__inputs--results twitterModal--content__right__inputs--results--err'>
+          <p>ERROR. Cannot Find Conversion Id.</p>
+        </div>
+      );
     }
-};
+  };
 
-
-
-
-const Modal = () => {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [showResults, setShowResults] = useState(false);
+  render() {
     return (
-        <div className="twitterModal-container">
-            <button onClick={() => setModalIsOpen(true)}>Twitter</button>
-            <ReactModal
-                transparent={true}
-                isOpen={modalIsOpen}
-                shouldCLoseOnOverlayClick={false}
-                onRequestClose={() => setModalIsOpen(false)}
-                className="twitterModal">
-                <div className="twitterModal--content">
-                    <div className="twitterModal--content__right">
-                        <h1>Paste Twitter Event Snippet</h1>
-                        <div className="twitterModal--content__right__inputs">
-                            <textarea></textarea>
-                            {/* <input type="textarea" rows="5"/> */}
-                            <button type="submit" onClick={(e) => setShowResults(Results(e))} >Submit</button>
-                        </div>
-                        {showResults ? <Results /> : null}
-                    </div>
-                    <div className="twitterModal--content__left">
-                    </div>
-                </div>
-            </ReactModal>
-        </div >
+      <div className='twitterModal-container'>
+        <button
+          onClick={() => {
+            this.setState({ modalIsOpen: true });
+          }}
+        >
+          Twitter
+        </button>
+        <ReactModal
+          transparent={true}
+          isOpen={this.state.modalIsOpen}
+          shouldCLoseOnOverlayClick={false}
+          onRequestClose={() => {
+            !this.state.modalIsOpen;
+          }}
+          className='twitterModal'
+        >
+          <div className='twitterModal--content'>
+            <div className='twitterModal--content__right'>
+              <h1>Paste Twitter Event Snippet</h1>
+              <div className='twitterModal--content__right__inputs'>
+                <textarea
+                  name='textarea'
+                  onChange={this.handleChange}
+                  value={this.state.value}
+                ></textarea>
+                <button
+                  type='submit'
+                  onClick={() => {
+                    this.setState({ showResults: true });
+                  }}
+                >
+                  Submit
+                </button>
+              </div>
+              {this.state.showResults ? <this.Results /> : null}
+            </div>
+            <div className='twitterModal--content__left'></div>
+          </div>
+        </ReactModal>
+      </div>
     );
-};
+  }
+}
 
-export default Modal;
+export default TwitterModal;
