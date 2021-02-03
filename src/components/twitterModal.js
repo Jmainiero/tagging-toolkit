@@ -74,7 +74,7 @@ class TwitterModal extends React.Component {
 
   render() {
     return (
-      <div className='twitterModal-container'>
+      <div className='modalglobal twitterModal-container'>
         <button
           onClick={() => {
             this.setState({ modalIsOpen: true });
@@ -87,7 +87,7 @@ class TwitterModal extends React.Component {
           isOpen={this.state.modalIsOpen}
           shouldCLoseOnOverlayClick={false}
           onRequestClose={() => {
-            !this.state.modalIsOpen;
+            this.setState({ modalIsOpen: false });
           }}
           className='twitterModal'
         >
