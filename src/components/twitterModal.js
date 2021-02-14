@@ -20,16 +20,20 @@ class TwitterModal extends React.Component {
     const snippet = this.state.value;
     try {
       if (snippet.length <= 0) {
+        return (null);
+      }
+
+      if (snippet.indexOf('twitter') < 0) {
         return (
           <div className='twitterModal--content__right__inputs--results twitterModal--content__right__inputs--results--err'>
-            <p>ERROR. Enter a value.</p>
+            <p>Invalid Twitter Snippet.</p>
           </div>
         );
       }
+
       const r = snippet
         .split('.')
         .map((e) => {
-          //   console.log(e.split("('"));
           if (e.split("('")[0] === 'trackPid') {
             return e.split("('")[1].split("',")[0];
           }
@@ -59,14 +63,14 @@ class TwitterModal extends React.Component {
       } else {
         return (
           <div className='twitterModal--content__right__inputs--results twitterModal--content__right__inputs--results--err'>
-            <p>ERROR. Cannot Find Website Tag Id.</p>
+            <p>Error. Cannot Find Website Tag Id.</p>
           </div>
         );
       }
     } catch (err) {
       return (
         <div className='twitterModal--content__right__inputs--results twitterModal--content__right__inputs--results--err'>
-          <p>ERROR. Cannot Find Conversion Id.</p>
+          <p>Error. Cannot Find Conversion Id.</p>
         </div>
       );
     }
@@ -108,6 +112,7 @@ class TwitterModal extends React.Component {
                 >
                   Submit
                 </button>
+
               </div>
               {this.state.showResults ? <this.Results /> : null}
             </div>
