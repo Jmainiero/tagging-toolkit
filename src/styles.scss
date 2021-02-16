@@ -35,7 +35,7 @@
 
 .linkedInModal {
     color: #ffffff;
-    height: 50%;
+    height: 32vh;
     font-size: 4rem;
     margin: 0;
     position: fixed;
@@ -126,6 +126,9 @@
                     float: right;
                     padding: 2rem;
                     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+                    position: fixed;
+                    bottom: 5rem;
+                    right: 10px;
                     &--err {
                         width: auto;
                         background-color: rgba(217, 30, 24, 0.6);
@@ -154,7 +157,7 @@
 
 .twitterModal {
     color: #ffffff;
-    height: 50%;
+    height: 32vh;
     font-size: 4rem;
     margin: 0;
     position: fixed;
@@ -236,7 +239,9 @@
                     float: right;
                     padding: 2rem;
                     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
-
+                    position: fixed;
+                    bottom: 5rem;
+                    right: 10px;
                     &--err {
                         width: auto;
                         background-color: rgba(217, 30, 24, 0.6);
